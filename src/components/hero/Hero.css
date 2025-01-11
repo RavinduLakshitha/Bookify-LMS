@@ -6,7 +6,7 @@
   height: 100vh;
   width: 100%;
   padding: 0;
-  margin: 0;
+  margin-top: 68.3px;
   display: flex;
 }
 
@@ -37,4 +37,44 @@
   font-size: 25px;
   padding-bottom: -5px;
 
+}
+
+@media (max-width: 768px) {
+  .hero {
+    flex-direction: column;
+    align-items: center; /* Center content vertically */
+    justify-content: center; /* Center content horizontally */
+  }
+
+  .hero__content {
+    text-align: left;
+    width: 90%; 
+    margin: 0 auto; 
+    padding: 20px; 
+  }
+
+  .hero__content h1 {
+    font-size: 50px; 
+    margin-bottom: 15px;
+    text-align:left; 
+    padding: 20px 10px 10px 10px; 
+  }
+
+  .hero__content p {
+    font-size: 18px; 
+    padding: 10px 10px 0 10px;
+    text-align:left; 
+  }
+}
+
+@media (max-width: 480px) {
+  .hero__content h1 {
+    font-size: 30px; 
+    padding: 15px 10px 5px 10px; 
+  }
+
+  .hero__content p {
+    font-size: 18px;
+    padding: 5px 10px; 
+  }
 }
