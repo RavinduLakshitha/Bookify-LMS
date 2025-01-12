@@ -4,8 +4,8 @@ import { FaPlus } from "react-icons/fa6";
 
 const Dashboard = () => {
   const [showForm, setShowForm] = useState(false);
-  const [formMode, setFormMode] = useState("add"); // 'add' or 'update'
-  const [selectedBook, setSelectedBook] = useState<{ id: number; title: string; author: string; description: string } | null>(null); // Book to update
+  const [formMode, setFormMode] = useState("add");
+  const [selectedBook, setSelectedBook] = useState<{ id: number; title: string; author: string; description: string } | null>(null);
   const [books, setBooks] = useState([
     {
       id: 1,
