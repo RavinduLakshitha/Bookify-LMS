@@ -1,27 +1,95 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import "./Dashboard.css";
 import { FaPlus } from "react-icons/fa6";
+import axios from "axios";
+
+interface Book {
+  id: string;
+  name: string;
+  author: string;
+  description: string;
+}
 
 const Dashboard = () => {
   const [showForm, setShowForm] = useState(false);
-  const [formMode, setFormMode] = useState("add");
-  const [selectedBook, setSelectedBook] = useState<{ id: number; title: string; author: string; description: string } | null>(null);
-  const [books, setBooks] = useState([
-    {
-      id: 1,
-      title: "Book Title",
-      author: "Author Name",
-      description: "This is a brief description of the book.",
-    },
-  ]);
+  const [formMode, setFormMode] = useState<"add" | "update">("add");
+  const [selectedBook, setSelectedBook] = useState<Book | null>(null);
+  const [books, setBooks] = useState<Book[]>([]);
+  const [loading, setLoading] = useState<boolean>(true);
+
+  // Fetch books data from the backend when the component is mounted
+  useEffect(() => {
+    const fetchBooks = async () => {
+      try {
+        const response = await axios.get("https://localhost:7086/api/Books");
+        setBooks(response.data);
+      } catch (error) {
+        console.error("Error fetching books:", error);
+        alert("Failed to load books. Please try again.");
+      } finally {
+        setLoading(false); 
+      }
+    };
+
+    fetchBooks();
+  }, []);
 
   const handleAddBookClick = () => {
     setFormMode("add");
-    setSelectedBook(null);
     setShowForm(true);
   };
 
-  const handleUpdateBookClick = (book: { id: number; title: string; author: string; description: string }) => {
+  const handleFormSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+
+    const formData = new FormData(e.target as HTMLFormElement);
+    const updatedBook = {
+      name: formData.get("name") as string,
+      author: formData.get("author") as string,
+      description: formData.get("description") as string,
+    };
+
+    try {
+      let response;
+      if (formMode === "add") {
+        response = await axios.post("https://localhost:7086/api/Books", updatedBook, {
+          headers: {
+            "Content-Type": "application/json",
+          },
+        });
+      } else if (formMode === "update" && selectedBook) {
+        response = await axios.put(
+          `https://localhost:7086/api/Books/${selectedBook.id}`,
+          updatedBook,
+          {
+            headers: {
+              "Content-Type": "application/json",
+            },
+          }
+        );
+      }
+
+      if (!response || response.status !== 200) {
+        throw new Error(formMode === "add" ? "Failed to add book" : "Failed to update book");
+      }
+
+      const updatedBooks = response.data;
+      if (formMode === "add") {
+        setBooks((prevBooks) => [...prevBooks, updatedBooks]);
+      } else {
+        setBooks((prevBooks) =>
+          prevBooks.map((book) => (book.id === updatedBooks.id ? updatedBooks : book))
+        );
+      }
+
+      setShowForm(false); // Close the form
+    } catch (error) {
+      console.error("Error submitting book:", error);
+      alert(formMode === "add" ? "Failed to add book." : "Failed to update book.");
+    }
+  };
+
+  const handleUpdateBookClick = (book: Book) => {
     setFormMode("update");
     setSelectedBook(book);
     setShowForm(true);
@@ -32,13 +100,26 @@ const Dashboard = () => {
     setSelectedBook(null);
   };
 
-
-  const handleDeleteBook = (id: number) => {
+  const handleDeleteBook = async (id: string) => {
     const confirmDelete = window.confirm("Are you sure you want to delete this book?");
     if (confirmDelete) {
-      setBooks(books.filter((book) => book.id !== id));
+      try {
+        const response = await axios.delete(`https://localhost:7086/api/Books/${id}`);
+        if (response.status === 200) {
+          setBooks(books.filter((book) => book.id !== id));
+        } else {
+          throw new Error("Failed to delete book");
+        }
+      } catch (error) {
+        console.error("Error deleting book:", error);
+        alert("Failed to delete book. Please try again.");
+      }
     }
   };
+
+  if (loading) {
+    return <div>Loading books...</div>;
+  }
 
   return (
     <>
@@ -56,14 +137,14 @@ const Dashboard = () => {
           <div className="modal_overlay">
             <div className="modal_content">
               <h3>{formMode === "add" ? "Add a New Book" : "Update Book"}</h3>
-              <form>
+              <form onSubmit={handleFormSubmit}>
                 <div className="form_field">
-                  <label htmlFor="title">Title:</label>
+                  <label htmlFor="name">Title:</label>
                   <input
                     type="text"
-                    id="title"
-                    name="title"
-                    defaultValue={selectedBook?.title || ""}
+                    id="name"
+                    name="name"
+                    defaultValue={selectedBook?.name || ""}
                     required
                   />
                 </div>
@@ -108,7 +189,6 @@ const Dashboard = () => {
           <table>
             <thead>
               <tr>
-                <th>ID</th>
                 <th>Title</th>
                 <th>Author</th>
                 <th>Description</th>
@@ -118,8 +198,7 @@ const Dashboard = () => {
             <tbody>
               {books.map((book) => (
                 <tr key={book.id}>
-                  <td>{book.id}</td>
-                  <td>{book.title}</td>
+                  <td>{book.name}</td>
                   <td>{book.author}</td>
                   <td>{book.description}</td>
                   <td>
