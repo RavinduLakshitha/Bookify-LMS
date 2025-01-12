@@ -25,7 +25,7 @@ const Navbar: React.FC = () => {
           </li>
           <li className="nav-item">
             <a href="/dashboard" className="nav-links">
-              Dash Board
+              Dashboard
             </a>
           </li>
           <li className="nav-item">
