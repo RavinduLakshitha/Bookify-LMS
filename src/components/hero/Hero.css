@@ -4,18 +4,18 @@
 }
 
 .font {
-  background-color: #1E3E62; 
+  background-color: #1e3e62;
   background-image: url("../../assets/Hero.jpg");
-  background-size: cover; 
-  background-position: center; 
-  background-repeat: no-repeat; 
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
   display: flex;
-  align-items: center; 
-  justify-content: space-between; 
-  padding: 20px; 
-  height: 92vh; 
-  width: 97.35%; 
-  color: #fff; 
+  align-items: center;
+  justify-content: space-between;
+  padding: 20px;
+  height: 92vh;
+  width: 97.35%;
+  color: #fff;
 }
 
 .hero__content {
@@ -35,7 +35,7 @@
   margin-bottom: 20px;
   letter-spacing: 2px;
   margin-top: 10px;
-  color: #EEEEEE;
+  color: #eeeeee;
   text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
 }
 
@@ -44,7 +44,7 @@
   font-weight: 500;
   font-size: 20px;
   padding-bottom: -5px;
-  color: #EEEEEE;
+  color: #eeeeee;
   text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
 }
 
@@ -58,24 +58,24 @@
 }
 
 .Read_book .card {
-  background-color: #EEEEEE;
+  background-color: #eeeeee;
   border: 1px solid #ddd;
   border-radius: 8px;
   padding: 20px;
-  width: 230px; 
-  height: 600px; 
+  width: 230px;
+  height: 600px;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
   text-align: center;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
   transition: transform 0.3s ease, box-shadow 0.3s ease;
-  margin: 10px; 
+  margin: 10px;
 }
 
 .Read_book .card:hover {
-  transform: translateY(-5px); 
-  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2); 
+  transform: translateY(-5px);
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
 }
 
 .Read_book .img {
@@ -100,7 +100,7 @@
   font-weight: bold;
   margin-bottom: 10px;
   color: #333;
-  text-transform: uppercase; 
+  text-transform: uppercase;
   text-align: center;
   height: 50px;
   /* overflow: hidden; */
@@ -110,7 +110,7 @@
   font-size: 18px;
   color: #555;
   margin-bottom: 15px;
-  font-style: italic; 
+  font-style: italic;
   text-align: center;
   height: 30px;
   overflow: hidden;
@@ -120,7 +120,7 @@
   font-size: 14px;
   color: #666;
   line-height: 1.5;
-  text-align: justify; 
+  text-align: justify;
   margin-top: 10px;
   max-height: 120px;
   overflow: hidden;
@@ -135,39 +135,39 @@
 @media (max-width: 768px) {
   .hero {
     flex-direction: column;
-    align-items: center; 
-    justify-content: center; 
+    align-items: center;
+    justify-content: center;
   }
 
   .hero__content {
     text-align: left;
-    width: 90%; 
-    margin: 0 auto; 
-    padding: 20px; 
+    width: 90%;
+    margin: 0 auto;
+    padding: 20px;
   }
 
   .hero__content h1 {
-    font-size: 50px; 
+    font-size: 50px;
     margin-bottom: 15px;
-    text-align: left; 
-    padding: 20px 10px 10px 10px; 
+    text-align: left;
+    padding: 20px 10px 10px 10px;
   }
 
   .hero__content p {
-    font-size: 18px; 
+    font-size: 18px;
     padding: 10px 10px 0 10px;
-    text-align: left; 
+    text-align: left;
   }
 }
 
 @media (max-width: 480px) {
   .hero__content h1 {
-    font-size: 30px; 
-    padding: 15px 10px 5px 10px; 
+    font-size: 30px;
+    padding: 15px 10px 5px 10px;
   }
 
   .hero__content p {
     font-size: 18px;
-    padding: 5px 10px; 
+    padding: 5px 10px;
   }
 }

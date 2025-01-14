@@ -30,7 +30,7 @@ const Navbar: React.FC = () => {
           </li>
           <li className="nav-item">
             <a href="/contact" className="nav-links">
-            Contact
+              Contact
             </a>
           </li>
           <li className="nav-item">
