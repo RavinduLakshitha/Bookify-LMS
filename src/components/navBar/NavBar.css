@@ -26,17 +26,24 @@
   text-decoration: none;
 }
 
+.navbar-logo:hover {
+  color: #8e1616;
+}
+
 .menu-icon {
   display: none;
 }
 
 .nav-menu {
   display: flex;
+  align-items: center;
   list-style: none;
+  margin: 0;
+  padding: 0;
 }
 
 .nav-item {
-  margin: 0 15px;
+  margin: 0 10px;
 }
 
 .nav-links {
@@ -46,6 +53,8 @@
   font-family: "Roboto", serif;
   justify-content: center;
   align-items: center;
+  background:none;
+  border: none;
 }
 
 .nav-links:hover {
@@ -65,8 +74,27 @@
 }
 
 .nav-item {
-  margin: 10px 15px;
+  margin: 10px 10px;
 }
+
+.logout-button {
+  background: none;
+  border: none;
+  /* color: #fff; */
+  cursor: pointer;
+  font-size: 1rem;
+  /* padding: 0.5rem 1rem; */
+  text-align: center;
+  display: inline-block;
+  margin: auto;
+  font-family: "Roboto", serif
+
+}
+
+.logout-button:hover {
+  color: #8e1616;
+}
+
 
 /* Responsive Styles */
 
@@ -126,6 +154,7 @@
     cursor: pointer;
     justify-content: space-between;
     padding: 10px;
+    margin-right: 20px;
   }
 
   .menu-icon:hover {
@@ -145,7 +174,7 @@
 
   .nav-links {
     padding: 10px;
-    text-align: center;
+    text-align: left;
     font-family: "Roboto", serif;
     width: 100%;
     padding: 8px 0;
@@ -167,7 +196,7 @@
   }
 
   .nav-item {
-    margin: 10px 0;
+    margin: 10px 20px;
   }
 
   .navbar-logo {
@@ -186,6 +215,7 @@
 
   .nav-links {
     font-size: 18px;
+    text-align: left;
   }
 
   .menu-icon {
@@ -195,9 +225,15 @@
 
   .nav-item {
     margin: 8px 0;
+    margin-left: 15px;
   }
 
   .nav-menu.active {
     padding: 5px;
+  }
+
+  .nav-links:hover {
+    color: #8e1616;
+    border-radius: 5px;
   }
 }
