@@ -70,10 +70,9 @@
 
 /* Responsive Styles */
 
-
 @media (min-width: 1200px) {
   .navbar-container {
-    padding: 10px 200px; 
+    padding: 10px 200px;
   }
 
   .navbar-logo {
@@ -95,10 +94,9 @@
   }
 }
 
-
 @media (max-width: 1200px) {
   .navbar-container {
-    padding: 10px 100px; 
+    padding: 10px 100px;
   }
 
   .navbar-logo {
@@ -136,7 +134,7 @@
   }
 
   .navbar-container {
-    padding: 10px 30px; 
+    padding: 10px 30px;
   }
 
   .nav-menu {
@@ -177,10 +175,9 @@
   }
 }
 
-
 @media (max-width: 480px) {
   .navbar-container {
-    padding: 10px 20px; 
+    padding: 10px 20px;
   }
 
   .navbar-logo {
@@ -200,7 +197,7 @@
     margin: 8px 0;
   }
 
-  .nav-menu.active{
+  .nav-menu.active {
     padding: 5px;
   }
 }
