@@ -8,7 +8,6 @@
   z-index: 100;
   display: flex;
   align-items: center;
-  
 }
 
 .navbar-container {
@@ -48,6 +47,7 @@
   justify-content: center;
   align-items: center;
 }
+
 .nav-links:hover {
   color: #8e1616;
   border-radius: 5px;
@@ -68,19 +68,75 @@
   margin: 10px 15px;
 }
 
-@media screen and (max-width: 768px) {
+/* Responsive Styles */
+
+
+@media (min-width: 1200px) {
+  .navbar-container {
+    padding: 10px 200px; 
+  }
+
+  .navbar-logo {
+    font-size: 45px;
+  }
+
+  .nav-links {
+    font-size: 22px;
+  }
+
+  .nav-menu {
+    display: flex;
+    justify-content: flex-end;
+  }
+
+  .nav-item {
+    margin: 0 20px;
+    padding: 10px;
+  }
+}
+
+
+@media (max-width: 1200px) {
+  .navbar-container {
+    padding: 10px 100px; 
+  }
+
+  .navbar-logo {
+    font-size: 40px;
+  }
+
+  .nav-links {
+    font-size: 20px;
+  }
+
+  .nav-menu {
+    display: flex;
+    justify-content: flex-end;
+  }
+
+  .nav-item {
+    margin: 0 15px;
+  }
+}
+
+@media (max-width: 768px) {
   .menu-icon {
     display: block;
     color: rgb(234, 227, 227);
-    font-size: 25px;
+    font-size: 30px;
     font-family: "Roboto", serif;
     cursor: pointer;
     justify-content: space-between;
+    padding: 10px;
   }
 
   .menu-icon:hover {
     color: #8e1616;
     border-radius: 5px;
+  }
+
+  .navbar-container {
+    padding: 10px 30px; 
   }
 
   .nav-menu {
@@ -94,11 +150,57 @@
     text-align: center;
     font-family: "Roboto", serif;
     width: 100%;
-    padding: 8px 0 8px 0;
+    padding: 8px 0;
   }
 
   .nav-links:hover {
     color: #8e1616;
     border-radius: 5px;
+  }
+
+  .nav-menu.active {
+    display: block;
+    position: absolute;
+    top: 60px;
+    left: 0;
+    background-color: #1d1616;
+    width: 100%;
+    padding: 10px;
+  }
+
+  .nav-item {
+    margin: 10px 0;
+  }
+
+  .navbar-logo {
+    font-size: 35px;
+  }
+}
+
+
+@media (max-width: 480px) {
+  .navbar-container {
+    padding: 10px 20px; 
+  }
+
+  .navbar-logo {
+    font-size: 30px;
+  }
+
+  .nav-links {
+    font-size: 18px;
+  }
+
+  .menu-icon {
+    font-size: 28px;
+    padding: 8px;
+  }
+
+  .nav-item {
+    margin: 8px 0;
+  }
+
+  .nav-menu.active{
+    padding: 5px;
   }
 }
