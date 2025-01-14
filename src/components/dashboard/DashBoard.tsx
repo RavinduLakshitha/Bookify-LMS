@@ -125,7 +125,6 @@ const Dashboard = () => {
     <>
       <div className="dashbord_container">
         <div className="addbook">
-          <button className="Addbtn">Dashboard</button>
           <button className="Addbtn" onClick={handleAddBookClick}>
             <FaPlus />
             Add Book
