@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import "./Dashboard.css";
 import { FaPlus } from "react-icons/fa6";
 import axios from "axios";
+import { toast } from "react-toastify";
 
 interface Book {
   id: string;
@@ -25,9 +26,9 @@ const Dashboard = () => {
         setBooks(response.data);
       } catch (error) {
         console.error("Error fetching books:", error);
-        alert("Failed to load books. Please try again.");
+        toast.error("Failed to load books. Please try again.");
       } finally {
-        setLoading(false); 
+        setLoading(false);
       }
     };
 
@@ -38,6 +39,8 @@ const Dashboard = () => {
     setFormMode("add");
     setShowForm(true);
   };
+
+  // Handle form submission to add or update a book
 
   const handleFormSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -51,12 +54,22 @@ const Dashboard = () => {
 
     try {
       let response;
+
+      // Add new book if form mode is 'add'
+
       if (formMode === "add") {
-        response = await axios.post("https://localhost:7086/api/Books", updatedBook, {
-          headers: {
-            "Content-Type": "application/json",
-          },
-        });
+        response = await axios.post(
+          "https://localhost:7086/api/Books",
+          updatedBook,
+          {
+            headers: {
+              "Content-Type": "application/json",
+            },
+          }
+        );
+        toast.success("Book Added Successfully");
+
+        // Update existing book if form mode is 'update' and a book is selected
       } else if (formMode === "update" && selectedBook) {
         response = await axios.put(
           `https://localhost:7086/api/Books/${selectedBook.id}`,
@@ -67,10 +80,13 @@ const Dashboard = () => {
             },
           }
         );
+        toast.success("Book Updated Successfully");
       }
 
       if (!response || response.status !== 200) {
-        throw new Error(formMode === "add" ? "Failed to add book" : "Failed to update book");
+        throw new Error(
+          formMode === "add" ? "Failed to add book" : "Failed to update book"
+        );
       }
 
       const updatedBooks = response.data;
@@ -78,16 +94,22 @@ const Dashboard = () => {
         setBooks((prevBooks) => [...prevBooks, updatedBooks]);
       } else {
         setBooks((prevBooks) =>
-          prevBooks.map((book) => (book.id === updatedBooks.id ? updatedBooks : book))
+          prevBooks.map((book) =>
+            book.id === updatedBooks.id ? updatedBooks : book
+          )
         );
       }
 
       setShowForm(false); // Close the form
     } catch (error) {
       console.error("Error submitting book:", error);
-      alert(formMode === "add" ? "Failed to add book." : "Failed to update book.");
+      toast.error(
+        formMode === "add" ? "Failed to add book." : "Failed to update book."
+      );
     }
   };
+
+  // Handle updating a book
 
   const handleUpdateBookClick = (book: Book) => {
     setFormMode("update");
@@ -100,19 +122,26 @@ const Dashboard = () => {
     setSelectedBook(null);
   };
 
+  // Handle deleting a book
+
   const handleDeleteBook = async (id: string) => {
-    const confirmDelete = window.confirm("Are you sure you want to delete this book?");
+    const confirmDelete = window.confirm(
+      "Are you sure you want to delete this book?"
+    );
     if (confirmDelete) {
       try {
-        const response = await axios.delete(`https://localhost:7086/api/Books/${id}`);
+        const response = await axios.delete(
+          `https://localhost:7086/api/Books/${id}`
+        );
         if (response.status === 200) {
           setBooks(books.filter((book) => book.id !== id));
+          toast.success("Book Deleted Successfully");
         } else {
           throw new Error("Failed to delete book");
         }
       } catch (error) {
         console.error("Error deleting book:", error);
-        alert("Failed to delete book. Please try again.");
+        toast.error("Failed to delete book. Please try again.");
       }
     }
   };
@@ -208,7 +237,12 @@ const Dashboard = () => {
                       >
                         Update
                       </button>
-                      <button className="rowbtn" onClick={() => handleDeleteBook(book.id)}>Delete</button>
+                      <button
+                        className="rowbtn"
+                        onClick={() => handleDeleteBook(book.id)}
+                      >
+                        Delete
+                      </button>
                     </div>
                   </td>
                 </tr>
