@@ -37,7 +37,7 @@
   width: 100%;
   margin: 20px auto;
   padding: 20px;
-  background-color: #EEEEEE;
+  background-color: #eeeeee;
   border-radius: 10px;
 }
 
@@ -112,7 +112,7 @@ tr:hover {
 }
 
 .modal_content {
-  background-color: #EEEEEE;
+  background-color: #eeeeee;
   padding: 20px;
   border-radius: 10px;
   width: 400px;
