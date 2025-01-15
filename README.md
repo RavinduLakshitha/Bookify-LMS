@@ -1,50 +1,80 @@
-# React + TypeScript + Vite
+Bookify
+Library Management System
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
 
-Currently, two official plugins are available:
+	Project Overview
+Bookify is a simple library management system designed to facilitate book management through CRUD operations. Developed using .NET 8 and React (TypeScript) for the frontend and a SQLite database for the backend, the system enables seamless management of library resources.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+	System Features
+	Home Page:
+•	Accessible to all users, providing an overview of the system and its functionalities.
 
-## Expanding the ESLint configuration
+	User Authentication:
+•	Login is mandatory for administrative operations.
+•	Only one user account is available:
+o	Username: admin@gmail.com
+o	Password: Admin@1234
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
+	Administrative Functions:
+•	Add Book: Allows the admin to create new book records with relevant details.
+•	Update Book: Enables editing existing book details.
+•	Delete Book: Removes books from the system.
+•	View Books: Displays a table with all book records, including their details.
 
-- Configure the top-level `parserOptions` property like this:
+	Development Details
+•	Frontend: Built with React (TypeScript), offering a user-friendly and responsive interface.
+•	Backend: Developed using .NET 8, ensuring robust and secure server-side operations.
+•	Database: SQLite was used for managing book data.
+•	Notifications: Integrated Toastify to provide success feedback for key actions like login, adding, updating, and deleting books.
 
-```js
-export default tseslint.config({
-  languageOptions: {
-    // other options...
-    parserOptions: {
-      project: ['./tsconfig.node.json', './tsconfig.app.json'],
-      tsconfigRootDir: import.meta.dirname,
-    },
-  },
-})
-```
+	Version Control
+Version control is handled using Git with a repository hosted on GitHub.
+Key aspects include:
+1.	Commit History:
+o	Descriptive commit messages highlight key changes such as feature additions, bug fixes, and formatting updates.
+2.	Branch Management:
+o	Separate branches were used for feature development and merged into the main branch upon completion.
+3.	Repository Link:
+o	Front-end : https://github.com/RavinduLakshitha/Bookify-LMS
+o	Back-end : https://github.com/RavinduLakshitha/Bookify_Backend
 
-- Replace `tseslint.configs.recommended` to `tseslint.configs.recommendedTypeChecked` or `tseslint.configs.strictTypeChecked`
-- Optionally add `...tseslint.configs.stylisticTypeChecked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and update the config:
+	Run Project
 
-```js
-// eslint.config.js
-import react from 'eslint-plugin-react'
+	Frontend Setup (VS Code)
+Prerequisites:
+•	Ensure you have Node.js installed. You can download it from https://code.visualstudio.com/
 
-export default tseslint.config({
-  // Set the react version
-  settings: { react: { version: '18.3' } },
-  plugins: {
-    // Add the react plugin
-    react,
-  },
-  rules: {
-    // other rules...
-    // Enable its recommended rules
-    ...react.configs.recommended.rules,
-    ...react.configs['jsx-runtime'].rules,
-  },
-})
-```
+Steps:
+1.	Clone the repository: Open a terminal in VS Code and run
+o	git clone https://github.com/RavinduLakshitha/Bookify-LMS.git .
+o	cd Bookify-LMS
+
+2.	Install dependencies: Run the following command to install the required Node.js packages:
+o	npm install
+
+3.	Run the frontend: Start the frontend project by running:
+o	npm run dev
+
+This will start a local development server (usually at http://localhost:3000)
+
+	Backend Setup (Visual Studio)
+Prerequisites:
+o	Ensure that you have .NET 8 SDK installed. You can download it from https://dotnet.microsoft.com/en-us/download/dotnet/8.0 .
+
+Steps:
+1.	Clone the repository: In a terminal or command prompt, navigate to a folder where you want to clone the backend repositor
+o	git clone https://github.com/RavinduLakshitha/Bookify_Backend.git
+o	cd LMS_Backend
+
+2.	Open the backend in Visual Studio:
+o	Open the solution file (.sln) in Visual Studio.
+o	Wait for Visual Studio to restore any NuGet packages (if necessary).
+
+3.	Set up the database:
+o	Ensure your database is set up and the connection strings in the appsettings.json file are correctly configured.
+
+4.	Run the backend: In Visual Studio, press Ctrl + F5 to run the backend. This will start the API server (typically at http://localhost:7086).
+	Conclusion
+library management system demonstrates the efficient management of library resources with an intuitive user interface and reliable backend operations. It demonstrates the practical implementation of web technologies to solve real-world library management problems.
+
+
