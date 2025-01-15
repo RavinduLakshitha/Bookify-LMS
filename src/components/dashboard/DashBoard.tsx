@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import "./Dashboard.css";
 import { FaPlus } from "react-icons/fa6";
 import axios from "axios";
+import { toast } from "react-toastify";
 
 interface Book {
   id: string;
@@ -25,9 +26,9 @@ const Dashboard = () => {
         setBooks(response.data);
       } catch (error) {
         console.error("Error fetching books:", error);
-        alert("Failed to load books. Please try again.");
+        toast.error("Failed to load books. Please try again.");
       } finally {
-        setLoading(false); 
+        setLoading(false);
       }
     };
 
@@ -57,6 +58,7 @@ const Dashboard = () => {
             "Content-Type": "application/json",
           },
         });
+        toast.success("Book Added Successfully");
       } else if (formMode === "update" && selectedBook) {
         response = await axios.put(
           `https://localhost:7086/api/Books/${selectedBook.id}`,
@@ -67,6 +69,7 @@ const Dashboard = () => {
             },
           }
         );
+        toast.success("Book Updated Successfully");
       }
 
       if (!response || response.status !== 200) {
@@ -85,7 +88,7 @@ const Dashboard = () => {
       setShowForm(false); // Close the form
     } catch (error) {
       console.error("Error submitting book:", error);
-      alert(formMode === "add" ? "Failed to add book." : "Failed to update book.");
+      toast.error(formMode === "add" ? "Failed to add book." : "Failed to update book.");
     }
   };
 
@@ -107,12 +110,13 @@ const Dashboard = () => {
         const response = await axios.delete(`https://localhost:7086/api/Books/${id}`);
         if (response.status === 200) {
           setBooks(books.filter((book) => book.id !== id));
+          toast.success("Book Deleted Successfully");
         } else {
           throw new Error("Failed to delete book");
         }
       } catch (error) {
         console.error("Error deleting book:", error);
-        alert("Failed to delete book. Please try again.");
+        toast.error("Failed to delete book. Please try again.");
       }
     }
   };
@@ -208,7 +212,9 @@ const Dashboard = () => {
                       >
                         Update
                       </button>
-                      <button className="rowbtn" onClick={() => handleDeleteBook(book.id)}>Delete</button>
+                      <button className="rowbtn" onClick={() => handleDeleteBook(book.id)}>
+                        Delete
+                      </button>
                     </div>
                   </td>
                 </tr>

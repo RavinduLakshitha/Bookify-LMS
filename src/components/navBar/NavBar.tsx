@@ -1,6 +1,8 @@
 import React, { useState } from "react";
 import LoginPopup from "../login/LoginPopup"; // Ensure correct import path
 import "./Navbar.css";
+import { toast, ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 const Navbar: React.FC = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -14,12 +16,14 @@ const Navbar: React.FC = () => {
   const handleLoginSuccess = () => {
     setIsLoggedIn(true);
     setIsPopupOpen(false);
+    toast.success("Login successfully!");
   };
 
   const handleLogout = () => {
     localStorage.removeItem("token"); // Remove the token from localStorage
-    setIsLoggedIn(false); // Update login state
+    setIsLoggedIn(false);
     setIsMenuOpen(false);
+    toast.success("Logout successfully");
   window.location.href = "/"; 
   };
 
@@ -66,6 +70,7 @@ const Navbar: React.FC = () => {
           onLoginSuccess={handleLoginSuccess}
         />
       )}
+      <ToastContainer position="bottom-right"/>
     </nav>
   );
 };
