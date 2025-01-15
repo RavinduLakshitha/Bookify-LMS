@@ -17,21 +17,23 @@ const LoginPopup: React.FC<LoginPopupProps> = ({ onClose, onLoginSuccess }) => {
     setError(""); // Clear any previous errors
 
     try {
-      const response = await axios.post("https://localhost:7086/api/Auth/login", {
-        email,
-        password,
-      });
+      const response = await axios.post(
+        "https://localhost:7086/api/Auth/login",
+        {
+          email,
+          password,
+        }
+      );
 
       // Save the JWT token to localStorage
       localStorage.setItem("token", response.data.token);
 
-      // Notify parent component about successful login
       onLoginSuccess();
     } catch (err: any) {
       if (err.response && err.response.status === 401) {
-        setError("Invalid credentials. Please try again."); // Show invalid credentials message
+        setError("Invalid credentials. Please try again.");
       } else {
-        setError("Something went wrong. Please try again later."); // Show general error
+        setError("Something went wrong. Please try again later.");
       }
     }
   };
@@ -43,7 +45,7 @@ const LoginPopup: React.FC<LoginPopupProps> = ({ onClose, onLoginSuccess }) => {
           &times;
         </span>
         <h2>Login</h2>
-        {error && <p className="error-message">{error}</p>} {/* Display error message */}
+        {error && <p className="error-message">{error}</p>}
         <form onSubmit={handleLogin}>
           <div className="form-group">
             <label>Username</label>
